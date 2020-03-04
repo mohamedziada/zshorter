@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %} - zShorter{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+          type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/landing-page.min.css" rel="stylesheet">
+
+
+    <link rel="shortcut icon" href="{{ absolute_url('favicon.png') }}">
+
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            <img src="{{ absolute_url(asset('img/logo.png')) }}" alt="zShorter!" style="width: 150px;"/>
+        </a>
+        <div>
+            {% if is_granted('ROLE_USER') %}
+                Logged in as {{ app.user.email }}<br>
+            {% endif %}
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p>
+                    Logged in as {{ app.user.email }}<br>
+                    <a href="{{ path('logout') }}">Logout</a>
+                </p>
+            {% else %}
+                <a class="btn btn-primary" href="{{ path('app_login') }}">Sign In</a>
+                <a class="btn btn-primary" href="{{ path('app_register') }}">Sign Up</a>
+            {% endif %}
+
+        </div>
+    </div>
+</nav>
+
+
+{% block body %}{% endblock %}
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="#">About</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Contact</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Terms of Use</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="#">Privacy Policy</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; zShorter 2020. All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
